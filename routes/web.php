@@ -24,9 +24,7 @@ require __DIR__.'/auth.php';
 // ログインしていないと見えないようにする
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // 管理画面TOPページ
-Route::get('top',function () {
-    return view('admin.top');
-})->name('top');
+Route::get('top',[CategoryController::class,'top'])->name('top');
 
 
 // カテゴリー管理
