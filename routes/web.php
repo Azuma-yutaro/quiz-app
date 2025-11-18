@@ -33,7 +33,8 @@ Route::get('top',function () {
 Route::prefix('categories')->name('categories.')->group(function () {
     // カテゴリー新規登録画面
     Route::get('create',[CategoryController::class,'create'])->name('create');
-    Route::get('store',[CategoryController::class,'store'])->name('store');
+    // 新規登録処理
+    Route::post('store',[CategoryController::class,'store'])->name('store');
 });
 
 });
