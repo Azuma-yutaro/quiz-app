@@ -24,7 +24,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    // ログアウトルーティング
+    // ログアウト処理
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });

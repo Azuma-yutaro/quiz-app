@@ -20,7 +20,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-// 管理画面TOPページ
+// ログインしていないと見えないようにする
+Route::middleware('auth')->group(function () {
+    // 管理画面TOPページ
 Route::get('/admin/top',function () {
     return view('admin.top');
 })->name('admin.top');
+
+});
