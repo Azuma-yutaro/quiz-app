@@ -23,4 +23,4 @@ require __DIR__.'/auth.php';
 // 管理画面TOPページ
 Route::get('/admin/top',function () {
     return view('admin.top');
-})->name("admin.top");
+})->name('admin.top');
