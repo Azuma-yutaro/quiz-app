@@ -33,6 +33,12 @@ Route::prefix('categories')->name('categories.')->group(function () {
     Route::get('create',[CategoryController::class,'create'])->name('create');
     // 新規登録処理
     Route::post('store',[CategoryController::class,'store'])->name('store');
+
+    // 詳細画面表示
+    Route::get('{categoryId}',[CategoryController::class,'show'])->name('show');
+
 });
+
+
 
 });

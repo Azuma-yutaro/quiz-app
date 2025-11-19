@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -35,8 +36,6 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // dd('カテゴリー新規登録処理のルート',$request);
-        // dd($request->name,$request->description);
         $category = new Category();
 
         $category->name        = $request->name;
@@ -48,11 +47,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * カテゴリー詳細表示
      */
-    public function show(Category $category)
+    public function show(Request $request,int $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+
+        return view('admin.categories.show',[
+            'category' =>$category
+        ]);
+
     }
 
     /**
