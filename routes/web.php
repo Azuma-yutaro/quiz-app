@@ -37,6 +37,12 @@ Route::prefix('categories')->name('categories.')->group(function () {
     // 詳細画面表示
     Route::get('{categoryId}',[CategoryController::class,'show'])->name('show');
 
+
+    // 編集画面表示
+    Route::get('{categoryId}/edit',[CategoryController::class,'edit'])->name('edit');
+    // カテゴリー更新処理
+    Route::post('{categoryId}/update',[CategoryController::class,'update'])->name('update');
+
 });
 
 

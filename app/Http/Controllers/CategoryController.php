@@ -60,19 +60,29 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * カテゴリー編集画面
      */
-    public function edit(Category $category)
+    public function edit(Request $request,int $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+        return view('admin.categories.edit',[
+            'category' =>$category
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * カテゴリー更新
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, int $categoryId)
     {
-        //
+        $category = Category::findOrFail($categoryId);
+        $category->name        = $request->name;
+        $category->description = $request->description;
+        $category->save();
+
+        return redirect()->route('admin.categories.show',['categoryId' => $categoryId]);
+
+
     }
 
     /**
