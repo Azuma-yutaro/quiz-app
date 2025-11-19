@@ -17,9 +17,9 @@
         </div>
         <div class="p-2 w-full mt-2">
           <button
-            {{-- onclick="location.href='{{ route('admin.categories.create') }}'" --}}
-          class="flex mx-auto text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
-            カテゴリー編集
+            onclick="location.href='{{ route('admin.categories.quizzes.create',['categoryId' => $category->id]) }}'"
+          class="flex mx-auto text-white bg-blue-400 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
+            クイズ登録
         </button>
         </div>
 
