@@ -63,7 +63,8 @@ Route::prefix('categories')->name('categories.')->group(function () {
         // クイズ編集
         Route::post('{quizId}/update',[QuizController::class,'update']) ->name('update');
 
-
+        // クイズ削除機能
+        Route::post('{quizId}/destroy',[QuizController::class,'destroy']) ->name('destroy');
     });
 
 

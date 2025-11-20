@@ -104,19 +104,18 @@ class QuizController extends Controller
 
         // optionの更新
         $options = [
-           ['optionId' =>(int)$request->optionId1,'content' => $request->content1,'is_correct' =>$request->isCorrect1],
-           ['optionId' =>(int)$request->optionId2,'content' => $request->content2,'is_correct' =>$request->isCorrect2],
-           ['optionId' =>(int)$request->optionId3,'content' => $request->content3,'is_correct' =>$request->isCorrect3],
-           ['optionId' =>(int)$request->optionId4,'content' => $request->content4,'is_correct' =>$request->isCorrect4]
+            ['optionId' => (int)$request->optionId1, 'content' => $request->content1, 'is_correct' => $request->isCorrect1],
+            ['optionId' => (int)$request->optionId2, 'content' => $request->content2, 'is_correct' => $request->isCorrect2],
+            ['optionId' => (int)$request->optionId3, 'content' => $request->content3, 'is_correct' => $request->isCorrect3],
+            ['optionId' => (int)$request->optionId4, 'content' => $request->content4, 'is_correct' => $request->isCorrect4]
         ];
 
 
-        foreach($options as $option) {
+        foreach ($options as $option) {
             $updateOption = Option::findOrFail($option['optionId']);
-            $updateOption ->content = $option['content'];
-            $updateOption ->is_correct = $option['is_correct'];
+            $updateOption->content = $option['content'];
+            $updateOption->is_correct = $option['is_correct'];
             $updateOption->save();
-
         }
 
         // カテゴリー詳細画面にリダイレクト
@@ -126,8 +125,12 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quiz $quiz)
+    public function destroy(Request $request, int $categoryId, int $quizId)
     {
-        //
+        // dd($request, $categoryId, $quizId);
+        $quiz = Quiz::findOrFail($quizId);
+        $quiz->delete();
+        // カテゴリー詳細画面にリダイレクト
+        return redirect()->route('admin.categories.show', ['categoryId' => $categoryId]);
     }
 }
