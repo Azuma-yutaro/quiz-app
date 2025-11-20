@@ -5,7 +5,7 @@
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">クイズ新規登録</h1>
     </div>
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
-        <form method="POST" action="{{ route('admin.categories.store') }}">
+        <form method="POST" action="{{ route('admin.categories.quizzes.store',['categoryId' =>$categoryId]) }}">
             @csrf
       <div class="flex flex-wrap -m-2">
 
@@ -35,7 +35,7 @@
             <div class="p-2 w-full">
             <div class="relative">
                 <label for="content{{ $i }}" class="leading-7 text-sm text-gray-600">{{ $i }}_選択肢</label>
-                <input type="text" id="content{{ $i }}" content="content{{ $i }}" value="{{ old('content' . $i) }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out text-purple-600">
+                <input type="text" id="content{{ $i }}" name="content{{ $i }}" value="{{ old('content' . $i) }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out text-purple-600">
             </div>
             {{-- エラーメッセージ --}}
             @error('content' . $i)

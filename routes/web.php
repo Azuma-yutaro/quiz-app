@@ -54,6 +54,9 @@ Route::prefix('categories')->name('categories.')->group(function () {
         // クイズ新規登録画面
         Route::get('create',[QuizController::class,'create']) ->name('create');
 
+        // クイズ蜃気楼録処理
+        Route::post('store',[QuizController::class,'store']) ->name('store');
+
     });
 
 
