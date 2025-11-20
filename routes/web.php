@@ -35,7 +35,7 @@ Route::prefix('categories')->name('categories.')->group(function () {
     // 新規登録処理
     Route::post('store',[CategoryController::class,'store'])->name('store');
 
-    // 詳細画面表示
+    // 詳細画面表示　＋クイズ一覧表示
     Route::get('{categoryId}',[CategoryController::class,'show'])->name('show');
 
 
@@ -54,8 +54,15 @@ Route::prefix('categories')->name('categories.')->group(function () {
         // クイズ新規登録画面
         Route::get('create',[QuizController::class,'create']) ->name('create');
 
-        // クイズ蜃気楼録処理
+        // クイズ新規登録処理
         Route::post('store',[QuizController::class,'store']) ->name('store');
+
+        // クイズ編集画面
+        Route::get('{quizId}/edit',[QuizController::class,'edit']) ->name('edit');
+
+        // クイズ編集
+        Route::post('{quizId}/update',[QuizController::class,'update']) ->name('update');
+
 
     });
 

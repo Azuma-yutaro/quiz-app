@@ -34,6 +34,13 @@
   <div class="container px-5 py-5 mx-auto">
 
     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+
+        @if (count($quizzes) === 0)
+
+        <p class=" text-center text-yellow-500">クイズがまだ登録されていません。</p>
+
+        @else
+
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
           <tr>
@@ -45,15 +52,16 @@
           </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($categories as $category ) --}}
+            @foreach ($quizzes as $quiz )
             <tr>
-                <td class="px-4 py-3">1</td>
-                <td class="px-4 py-3">ME:Iのメンバーは何人？</td>
-                <td class="px-4 py-3">2025/11/19</td>
+                <td class="px-4 py-3">{{ $quiz->id }}</td>
+                {{-- 問題文は10文字を表示 --}}
+                <td class="px-4 py-3">{{ Str::length($quiz->question) >10 ? mb_substr($quiz->question,0,10) . "..." :$quiz->question }}</td>
+                <td class="px-4 py-3">{{ $quiz->updated_at }}</td>
                 <td class="px-4 py-3 text-lg text-gray-900">
                 <button
                 {{-- クイズ編集画面 --}}
-                {{-- onclick="location.href = '{{ route('admin.categories.show', ['categoryId' => $category->id]) }}'" --}}
+                onclick="location.href = '{{ route('admin.categories.quizzes.edit', ['categoryId' => $category->id,'quizId' => $quiz->id]) }}'"
 
                 class="flex ml-auto text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded">詳細</button>
                 </td>
@@ -62,11 +70,13 @@
                 </td>
 
             </tr>
-            {{-- @endforeach --}}
+            @endforeach
 
         </tbody>
       </table>
     </div>
+        @endif
+
 
   </div>
 </section>

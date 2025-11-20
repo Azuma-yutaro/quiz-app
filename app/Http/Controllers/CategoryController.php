@@ -18,8 +18,8 @@ class CategoryController extends Controller
         $categories = Category::get();
         // dd($categories);
 
-        return view('admin.top',[
-            'categories' =>$categories
+        return view('admin.top', [
+            'categories' => $categories
         ]);
     }
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         return view('admin.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -43,30 +43,30 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->route('admin.top');
-
     }
 
     /**
-     * カテゴリー詳細表示
+     * カテゴリー詳細表示 ＋ クイズ一覧表示
      */
-    public function show(Request $request,int $categoryId)
+    public function show(Request $request, int $categoryId)
     {
-        $category = Category::findOrFail($categoryId);
+        $category = Category::with('quizzes')->findOrFail($categoryId);
 
-        return view('admin.categories.show',[
-            'category' =>$category
+        // dd($category->quizzes);
+        return view('admin.categories.show', [
+            'category' => $category,
+            'quizzes'  => $category->quizzes
         ]);
-
     }
 
     /**
      * カテゴリー編集画面
      */
-    public function edit(Request $request,int $categoryId)
+    public function edit(Request $request, int $categoryId)
     {
         $category = Category::findOrFail($categoryId);
-        return view('admin.categories.edit',[
-            'category' =>$category
+        return view('admin.categories.edit', [
+            'category' => $category
         ]);
     }
 
@@ -80,20 +80,17 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->save();
 
-        return redirect()->route('admin.categories.show',['categoryId' => $categoryId]);
-
-
+        return redirect()->route('admin.categories.show', ['categoryId' => $categoryId]);
     }
 
     /**
      * カテゴリー削除
      */
-    public function destroy(Request $request,int $categoryId)
+    public function destroy(Request $request, int $categoryId)
     {
         $category = Category::findOrFail($categoryId);
         $category->delete();
 
         return redirect()->route('admin.top');
-
     }
 }
