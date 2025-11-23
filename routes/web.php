@@ -15,6 +15,8 @@ Route::get('/', [PlayController::class,'top'])->name('top');
 Route::get('categories/{categoryId}',[PlayController::class,'categories'])->name('categories');
 // クイズ出題画面
 Route::get('categories/{categoryId}/quizzes',[PlayController::class,'quizzes'])->name('categories.quizzes');
+// クイズ解凍画面
+Route::post('categories/{categoryId}/quizzes/answer',[PlayController::class,'answer'])->name('categories.quizzes.answer');
 
 
 // 管理者認証機能
