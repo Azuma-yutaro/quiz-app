@@ -29,5 +29,21 @@ class PlayController extends Controller
         ]);
     }
 
+    // クイズ出題画面
+    public function quizzes(Request $request,int $categoryId)
+    {
+        // カテゴリーに紐ずくクイズを取得
+        $category = Category::with('quizzes.options')->findOrFail($categoryId);
+        // クイズをランダムで選ぶ
+        $quizzes = $category->quizzes->toArray();
+        shuffle($quizzes);
+        // dd($quizzes[0]);
+        $quiz = $quizzes[0];
+
+        return view('play.quizzes',[
+            'quiz' => $quiz
+        ]);
+    }
+
 
 }

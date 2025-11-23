@@ -11,7 +11,9 @@
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
 
         <div class="p-2 w-full">
-          <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Start</button>
+          <button
+        onclick="location.href='{{ route('categories.quizzes',['categoryId' => $category->id]) }}'"
+          class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Start</button>
         </div>
 
     </div>

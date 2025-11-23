@@ -13,6 +13,8 @@ Route::get('/', [PlayController::class,'top'])->name('top');
 // クイズスタート画面
 
 Route::get('categories/{categoryId}',[PlayController::class,'categories'])->name('categories');
+// クイズ出題画面
+Route::get('categories/{categoryId}/quizzes',[PlayController::class,'quizzes'])->name('categories.quizzes');
 
 
 // 管理者認証機能
