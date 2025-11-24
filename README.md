@@ -1,67 +1,106 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laravel Quiz App
 
-## About Laravel
+これは、Laravelフレームワークを使用して構築されたクイズアプリケーションです。ユーザーはさまざまなカテゴリのクイズに挑戦でき、管理者はクイズのカテゴリや問題を作成、編集、削除できます。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 主な機能
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### プレイヤー向け機能
+- クイズカテゴリ一覧の表示
+- 選択したカテゴリのクイズに挑戦
+- 回答後に正誤判定と結果を表示
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 管理者向け機能
+- ログイン認証
+- カテゴリのCRUD（作成、読み取り、更新、削除）
+- 各カテゴリに紐づくクイズのCRUD
+- クイズの問題文と4つの選択肢（うち1つが正解）を設定可能
 
-## Learning Laravel
+## 必要なもの
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP ^8.2
+- Composer
+- Node.js
+- npm (or yarn)
+- SQLite (またはMySQLやPostgreSQLなどのデータベース)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## インストールとセットアップ
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **リポジトリをクローンします**
+   ```bash
+   git clone https://github.com/your-username/quiz-app.git
+   cd quiz-app
+   ```
 
-## Laravel Sponsors
+2. **PHPの依存関係をインストールします**
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **`.env`ファイルを作成します**
+   `.env.example`ファイルをコピーして`.env`ファイルを作成します。
+   ```bash
+   cp .env.example .env
+   ```
 
-### Premium Partners
+4. **アプリケーションキーを生成します**
+   ```bash
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **データベースを設定します**
+   デフォルトではSQLiteを使用します。`database/database.sqlite`に空のファイルを作成してください。
+   ```bash
+   touch database/database.sqlite
+   ```
+   `.env`ファイルで他のデータベース（MySQLなど）を使用する場合は、設定を適宜変更してください。
 
-## Contributing
+6. **データベースマイグレーションを実行します**
+   テーブルを作成するために、以下のコマンドを実行します。
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **（任意）ダミーデータを投入します**
+   テスト用のカテゴリやクイズを生成するには、シーダーを実行します。
+   ```bash
+   php artisan db:seed
+   ```
 
-## Code of Conduct
+8. **JavaScriptの依存関係をインストールします**
+   ```bash
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+9. **開発サーバーを起動します**
+   ViteとPHPのビルトインサーバーを起動します。
+   ```bash
+   npm run dev
+   ```
+   または、`composer.json`の`scripts`に定義されている`dev`コマンドでも起動できます。
+   ```bash
+   composer run dev
+   ```
 
-## Security Vulnerabilities
+   アプリケーションには `http://localhost:8000` でアクセスできます。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 使い方
 
-## License
+- **クイズをプレイする**: トップページ (`/`) にアクセスすると、カテゴリ一覧が表示されます。カテゴリを選択してクイズを開始します。
+- **管理画面**: `/admin/top` にアクセスし、ログインすると管理機能が利用できます。（ユーザー登録は `/register` から行えます）
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# quiz-app
+## テスト
+
+PHPUnitを使用してテストを実行できます。
+
+```bash
+php artisan test
+```
+
+## 使用技術
+
+- **バックエンド**: Laravel 11, PHP 8.2
+- **フロントエンド**: Blade, Tailwind CSS, Alpine.js, Vite
+- **データベース**: SQLite (デフォルト)
+- **認証**: Laravel Breeze
