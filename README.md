@@ -104,3 +104,22 @@ php artisan test
 - **フロントエンド**: Blade, Tailwind CSS, Alpine.js, Vite
 - **データベース**: SQLite (デフォルト)
 - **認証**: Laravel Breeze
+
+
+
+## 開発起動メモ
+
+
+・起動3STEP
+```bash
+Docker Desktop の起動
+sail npm run dev
+sail up -d       
+```
+
+・終了3STEP
+```bash
+Docker Desktop の終了
+sail down     
+Ctrl+C （sail up -d　が起動しているターミナルで）       
+```
