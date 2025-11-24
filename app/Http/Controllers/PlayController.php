@@ -49,9 +49,46 @@ class PlayController extends Controller
     public function answer(Request $request,int $categoryId) {
         // dd($categoryId,$request);
         $quizId = $request->quizId;
-        $optionId = $request->optionId;
+        $selectedOptions = $request->optionId;
 
+        // カテゴリーに紐ずくクイズを取得
+        $category = Category::with('quizzes.options')->findOrFail($categoryId);
+        $quiz = $category->quizzes->firstWhere('id',$quizId);
+        $quizOptions =$quiz->options->toArray();
+        $result = $this->isCorrectAnswer($selectedOptions, $quizOptions);
+        dd($result);
         return view('play.answer');
+    }
+
+
+    // プレイヤーの選択が正解か不正解を判定
+    private function isCorrectAnswer(array $selectedOptions,array $quizOptions) {
+        // クイズの選択肢から正解の選択肢のIDを取得
+        $correctOptions = array_filter($quizOptions,function ($option){
+            return $option['is_correct'] === 1;
+        });
+
+        // idだけを抽出
+        $correctOptionIds = array_map(function($option){
+            return $option['id'];
+        },$correctOptions);
+
+
+        // dd($correctOptions,$quizOptions);
+        // プレイヤーが選んだ選択肢の個数と成果の選択肢の個数が一致するか判定
+        if(count($selectedOptions) !== count($correctOptionIds)){
+            return false;
+        }
+        // 選択肢たIDと正解のIDが一致するか判定
+
+        foreach($selectedOptions as $selectedOption) {
+            if(!in_array((int)$selectedOption,$correctOptionIds)){
+                return false;
+            }
+        }
+
+        // 正解
+        return true;
     }
 
 }
