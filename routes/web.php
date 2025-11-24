@@ -17,7 +17,8 @@ Route::get('categories/{categoryId}',[PlayController::class,'categories'])->name
 Route::get('categories/{categoryId}/quizzes',[PlayController::class,'quizzes'])->name('categories.quizzes');
 // クイズ解凍画面
 Route::post('categories/{categoryId}/quizzes/answer',[PlayController::class,'answer'])->name('categories.quizzes.answer');
-
+// クイズ結果発表画面
+Route::get('categories/{categoryId}/quizzes/result',[PlayController::class,'result'])->name('categories.quizzes.result');
 
 // 管理者認証機能
 require __DIR__.'/auth.php';
