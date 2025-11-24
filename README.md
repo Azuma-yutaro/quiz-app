@@ -102,8 +102,15 @@ php artisan test
 
 - **バックエンド**: Laravel 11, PHP 8.2
 - **フロントエンド**: Blade, Tailwind CSS, Alpine.js, Vite
-- **データベース**: SQLite (デフォルト)
+- **データベース**: mysql
 - **認証**: Laravel Breeze
+
+
+## 開発環境
+
+- **OS**: Mac
+- **エディタ**: Vs Code
+- **ツール**: Sequel Ace、Git
 
 
 
